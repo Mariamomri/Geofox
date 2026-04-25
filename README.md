@@ -1,16 +1,70 @@
-# React + Vite
+1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Automatic Zoom
+Projet de Vacances — Quiz Démographique Julien • Vitor • Yanis
 
-Currently, two official plugins are available:
+Objectif du projet
+Vous devez concevoir et développer un jeu de quiz interactif autour de la géographie
+mondiale (démographie et culture générale).
+Le but est de créer une application moderne, fonctionnelle et agréable à utiliser.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Technologies imposées
+Vous devez obligatoirement utiliser :
+• Maquettage : Figma
+• Front-end : React + TailwindCSS + Vite
+• Back-end : PHP
+• Base de données : SQL
+• Versioning : Git / GitHub
 
-## React Compiler
+Sujet du projet
+Créer un jeu de quiz démographique avec des questions portant sur :
+• Nom du pays
+• Capitale
+• Population
+• Drapeau
+• Pays limitrophes
+• Continent
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Fonctionnalités attendues
 
-## Expanding the ESLint configuration
+1. Modes de jeu
+   Votre application doit proposer :
+   • Mode normal : sans limite de temps
+   • Mode contre la montre : temps limité pour répondre
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Système de questions
+   • Questions à choix multiples (QCM)
+   • Une seule bonne réponse par question
+   • Affichage clair des réponses
+   • Feedback après réponse (bonne / mauvaise)
+
+3. Interface utilisateur
+   • Design moderne et responsive
+   • Utilisation de TailwindCSS
+   • Navigation fluide entre les pages
+
+4. Pages obligatoires
+   • Page d’accueil
+   • Présentation du jeu
+   • Bouton "Commencer"
+   • Choix du mode de jeu
+   • Page de quiz
+   • Affichage des questions
+   • Réponses interactives
+   • Page de résultats
+   • Score final
+   • Nombre de bonnes réponses
+   • Bouton pour rejouer
+
+5. Base de données
+   Vous devez créer une base SQL contenant :
+   • Table pays « db_pays »
+   • Vous pouvez faire une table questions et ou réponses
+   • (Bonus) Table scores joueurs
+
+6. Back-end (PHP)
+   • Récupération des questions depuis la base
+   • Créez des classes nécessaires
+   • Transformations en Json
+   • Gestion des réponses (tester que votre Json est en mode api accessible à partir
+   d’un fichier test)
