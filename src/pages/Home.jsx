@@ -1,4 +1,5 @@
 import React from "react";
+import audio from "../assets/audio/terra.mp3";
 
 function Home() {
   const videoTerra = `${import.meta.env.BASE_URL}videos/terra.mp4`;
@@ -15,6 +16,8 @@ function Home() {
         <source src={videoTerra} type="video/mp4" />
         Ton navigateur ne supporte pas la vidéo HTML5.
       </video>
+
+      <audio controls src={audio} />
     </div>
   );
 }
