@@ -4,7 +4,7 @@ import logo from "../assets/img/logo.png";
 function Header() {
   return (
     <header className="bg-transparent text-white p-4 flex items-center justify-between">
-      <img src={logo} alt="Logo" className="h-50" />
+      <img src={logo} alt="Logo" className="h-40" />
       <nav className="mt-4">
         <ul className="flex space-x-4 text-lg">
           <li>
