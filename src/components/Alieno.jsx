@@ -18,7 +18,7 @@ function Alieno() {
         background: "transparent",
         position: "relative",
         left: 1000,
-        top: -50,
+        top: 150,
         cursor: "pointer",
       }}
     >
