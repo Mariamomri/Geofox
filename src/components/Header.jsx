@@ -25,7 +25,7 @@ function Header() {
         </ul>
       </nav>
       <button href="#" className="mr-15 text-lg">
-        Login
+        SAMI
       </button>
     </header>
   );
