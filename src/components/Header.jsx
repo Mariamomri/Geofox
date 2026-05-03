@@ -8,17 +8,17 @@ function Header() {
       <nav className="mt-4">
         <ul className="flex space-x-15 ">
           <li>
-            <a href="#" className="hover:underline">
+            <a href="#" className="hover:underline text-lg  ">
               Home
             </a>
           </li>
           <li>
-            <a href="#" className="hover:underline">
+            <a href="#" className="hover:underline text-lg  ">
               About
             </a>
           </li>
           <li>
-            <a href="#" className="hover:underline">
+            <a href="#" className="hover:underline text-lg font-bold">
               Contact
             </a>
           </li>
