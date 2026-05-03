@@ -5,10 +5,10 @@ function Footer() {
   const data = new Date();
 
   return (
-    <div className="bg-[#F1F3F4] text-white p-4 flex items-center justify-between fixed bottom-0 w-full">
+    <div className="bg-[#F1F3F4] text-white p-2 flex items-center justify-between fixed bottom-0 w-full">
       <div className="text-black">
-        <p>{data.toLocaleDateString("it-IT")}</p>
-        <p> {data.toLocaleTimeString("it-IT")}</p>
+        <p>{data.toLocaleDateString("be-BE")}</p>
+        <p> {data.toLocaleTimeString("be-BE")}</p>
       </div>
 
       <audio controls src={audio} className="color-move" />
