@@ -1,5 +1,6 @@
 import React from "react";
 import Alieno from "../components/Alieno";
+import { Link } from "react-router-dom";
 
 function Home() {
   const videoTerra = `${import.meta.env.BASE_URL}videos/terra.mp4`;
@@ -64,6 +65,13 @@ function Home() {
             continents du monde entier. Es-tu prêt à devenir le maître de la
             géographie ?
           </p>
+          {/* Bouton Commencer */}
+          <Link
+            to="/modes"
+            className="neon-box inline-block bg-geo-pink text-geo-bg px-8 md:px-12 py-3 md:py-4 rounded-full font-bold text-base md:text-xl uppercase tracking-wider hover:bg-geo-pink-glow hover:scale-105 transition-all"
+          >
+            Commencer
+          </Link>
         </div>
       </div>
     </>
