@@ -10,7 +10,8 @@ function Header() {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            (isActive ? "active" : "") + " text-lg mr-8"
+            (isActive ? "active" : "") +
+            " text-lg mr-8 hover:text-geo-pink transition-colors duration-300"
           }
         >
           Home
@@ -21,14 +22,14 @@ function Header() {
           className={({ isActive }) =>
             (isActive ? "active" : "") + " text-lg mr-8"
           }
-          >
+        >
           Mode de jeu
         </NavLink>
 
         <NavLink
           to="/quiz"
           className={({ isActive }) =>
-            (isActive ? "active" : "") + " text-lg mr-8"
+            (isActive ? "active" : "") + " text-lg mr-8 "
           }
         >
           Quiz
