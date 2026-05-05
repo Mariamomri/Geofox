@@ -66,7 +66,7 @@ function Home() {
             géographie ?
           </p>
           {/* Bouton Commencer */}
-          <Link to="/modes" className="commencer">
+          <Link to="/modeDeJeu" className="commencer">
             Commencer
           </Link>
         </div>
