@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import yoga from "../assets/img/yoga.gif";
+import orologio from "../assets/img/orologio.gif";
 
 function ModeDeJeu() {
   const videoLune = `${import.meta.env.BASE_URL}videos/terra2.mp4`;
@@ -53,7 +54,13 @@ function ModeDeJeu() {
                 : "border-white/30 bg-white/5"
             }`}
           >
-            <div className="text-4xl mb-2"></div>
+            <div className="text-4xl mb-2">
+              <img
+                src={orologio}
+                alt="Orologio"
+                className="w-20 ml-10 mb-5 mt-5"
+              />
+            </div>
             <p className="font-bold">Contre la montre</p>
             <p className="text-sm text-white/80">10 secondes par question</p>
           </button>
