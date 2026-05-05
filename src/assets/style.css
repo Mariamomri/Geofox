@@ -37,3 +37,17 @@ a {
   top: 150px;
   cursor: pointer;
 }
+
+.commencer {
+  font-size: 1.5rem;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  background-color: #ff8c00;
+  color: #F5E1C8;
+  padding: 15px 30px;
+  border-radius: 9999px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease-in-out;
+}
