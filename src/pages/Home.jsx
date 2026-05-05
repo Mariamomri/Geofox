@@ -4,7 +4,7 @@ import Alieno from "../components/Alieno";
 function Home() {
   const videoTerra = `${import.meta.env.BASE_URL}videos/terra.mp4`;
   const videoSole = `${import.meta.env.BASE_URL}videos/sole.mp4`;
-  const videoLune = `${import.meta.env.BASE_URL}videos/terra2.mp4`;
+  // const videoLune = `${import.meta.env.BASE_URL}videos/terra2.mp4`;
 
   return (
     <>
@@ -58,8 +58,8 @@ function Home() {
 
         <div className=" divtext text-left px-20">
           <h1 className="titolo">GEOFOX</h1>
-          <p className="text-home">Quiz Démographique Mondial</p>
-          <p className="text-sm md:text-base text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
+          <p className="text-home">Quiz Démographique Mondial</p> <br />
+          <p className="text-sm md:text-base text-white mb-10 max-w-xl mx-auto leading-relaxed">
             Teste tes connaissances sur les capitales, drapeaux, populations et
             continents du monde entier. Es-tu prêt à devenir le maître de la
             géographie ?
