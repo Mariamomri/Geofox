@@ -18,7 +18,7 @@ function Header() {
             </a>
           </li>
           <li>
-            <a href="#" className="hover:underline text-lg font-bold">
+            <a href="#" className="hover:underline text-lg">
               Contact
             </a>
           </li>
