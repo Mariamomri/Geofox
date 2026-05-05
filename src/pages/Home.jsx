@@ -66,10 +66,7 @@ function Home() {
             géographie ?
           </p>
           {/* Bouton Commencer */}
-          <Link
-            to="/modes"
-            className="neon-box inline-block bg-geo-pink text-geo-bg px-8 md:px-12 py-3 md:py-4 rounded-full font-bold text-base md:text-xl uppercase tracking-wider hover:bg-geo-pink-glow hover:scale-105 transition-all"
-          >
+          <Link to="/modes" className="commencer">
             Commencer
           </Link>
         </div>
