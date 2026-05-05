@@ -44,7 +44,7 @@ function Header() {
         </NavLink>
       </nav>
       <button href="#" className="mr-15 text-lg">
-        SAMI
+        Login
       </button>
     </header>
   );
