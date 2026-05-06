@@ -72,7 +72,7 @@ function Quiz() {
           <button
             key={index}
             onClick={() => handleReponse(option)}
-            className={`p-4 rounded-xl border-2 font-semibold transition-all ${
+            className={`p-4 rounded-xl border-2 font-semibold transition-all cursor-pointer ${
               selected === null
                 ? "border-white/30 hover:border-white"
                 : option === question.answer
@@ -103,3 +103,5 @@ function Quiz() {
 }
 
 export default Quiz;
+
+/*Quando l'utente arriva sulla pagina Quiz, useEffect si esegue automaticamente e fa una chiamata fetch all'endpoint PHP. PHP legge 4 paesi casuali dal database con PDO, crea una domanda con la risposta giusta e 3 distrattori, e risponde in JSON. React riceve il JSON, lo salva con useState e lo mostra. Quando l'utente clicca una risposta, handleReponse salva la scelta e il ternario nel className mostra verde per la risposta giusta e rosso per quella sbagliata.*/

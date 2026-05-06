@@ -35,7 +35,7 @@ function ModeDeJeu() {
             {/* Bouton Mode Normal */}
             <button
               onClick={() => setMode("Normal")}
-              className={`p-6 rounded-2xl border-2 transition-all ${
+              className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
                 mode === "Normal"
                   ? "border-white bg-white/20"
                   : "border-white/30 bg-white/5"
@@ -51,7 +51,7 @@ function ModeDeJeu() {
             {/* Bouton Contre la montre */}
             <button
               onClick={() => setMode("Contre la montre")}
-              className={`p-6 rounded-2xl border-2 transition-all ${
+              className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
                 mode === "Contre la montre"
                   ? "border-white bg-white/20"
                   : "border-white/30 bg-white/5"
