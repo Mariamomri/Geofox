@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import yoga from "../assets/img/yoga.gif";
 import orologio from "../assets/img/orologio.gif";
 import { Link } from "react-router-dom";
+import { useQuiz } from "../context/QuizContext.jsx"; //ho tolto usetate per utilizzare il cotext
 
 function ModeDeJeu() {
   const videoLune = `${import.meta.env.BASE_URL}videos/terra2.mp4`;
-  const [mode, setMode] = useState("Normal");
+  const [mode, setMode] = useQuiz();
 
   return (
     <>
