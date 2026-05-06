@@ -1,7 +1,7 @@
 <?php
 //recuperiamo i dati seguenti... dal database
 
-require 'bd.php';
+require_once 'bd.php';
 
 
 function getAllPays()

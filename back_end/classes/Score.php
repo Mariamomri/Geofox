@@ -1,7 +1,7 @@
 <?php
 // salviamo i punteggi nel database e recuperiamo i migliori punteggi per la classifica
 
-require 'bd.php';
+require_once 'bd.php';
 
 function saveScore($pseudo, $score, $total, $mode)
 {
