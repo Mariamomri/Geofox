@@ -1,5 +1,5 @@
 <?php
-// Permettre à React de communiquer avec PHP poi ur récupérer les données des pays et les questions du quiz
+// Permettre à React de communiquer avec PHP poi récupérer les données des pays et les questions du quiz pour les envoyer à React en format JSON
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
@@ -24,4 +24,6 @@ $question = [
   ]
 ];
 
-echo json_encode($question);
+echo json_encode($question); //Trasforma l'array PHP in una stringa JSON che React può leggere. React riceve questa stringa JSON e la converte in un oggetto JavaScript per visualizzarla all'utente.
+
+/*React fa una richiesta fetch all'endpoint PHP. PHP legge il database con PDO, crea un array con la domanda e le 4 opzioni, e lo invia in formato JSON con json_encode. React riceve il JSON e lo mostra all'utente*/
