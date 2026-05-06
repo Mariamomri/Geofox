@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function ModeDeJeu() {
   const videoLune = `${import.meta.env.BASE_URL}videos/terra2.mp4`;
-  const [mode, setMode] = useState("normal");
+  const [mode, setMode] = useState("Normal");
 
   return (
     <>
@@ -33,9 +33,9 @@ function ModeDeJeu() {
           <div className="flex gap-6 mb-10">
             {/* Bouton Mode Normal */}
             <button
-              onClick={() => setMode("normal")}
+              onClick={() => setMode("Normal")}
               className={`p-6 rounded-2xl border-2 transition-all ${
-                mode === "normal"
+                mode === "Normal"
                   ? "border-white bg-white/20"
                   : "border-white/30 bg-white/5"
               }`}
@@ -43,15 +43,15 @@ function ModeDeJeu() {
               <div className="text-4xl mb-2">
                 <img src={yoga} alt="Yoga" className="w-50 " />
               </div>
-              <p className="font-bold">Mode Normal</p>
+              <p className="font-bold">Mode normal</p>
               <p className="text-sm text-white/80">Sans limite de temps</p>
             </button>
 
             {/* Bouton Contre la montre */}
             <button
-              onClick={() => setMode("time")}
+              onClick={() => setMode("Contre la montre")}
               className={`p-6 rounded-2xl border-2 transition-all ${
-                mode === "time"
+                mode === "Contre la montre"
                   ? "border-white bg-white/20"
                   : "border-white/30 bg-white/5"
               }`}
