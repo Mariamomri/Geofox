@@ -6,7 +6,7 @@ import { useQuiz } from "../context/QuizContext.jsx"; //ho tolto usetate per uti
 
 function ModeDeJeu() {
   const videoLune = `${import.meta.env.BASE_URL}videos/terra2.mp4`;
-  const [mode, setMode] = useQuiz();
+  const { mode, setMode } = useQuiz();
 
   return (
     <>
