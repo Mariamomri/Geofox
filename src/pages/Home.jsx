@@ -3,27 +3,11 @@ import Alieno from "../components/Alieno";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const videoTerra = `${import.meta.env.BASE_URL}videos/terra.mp4`;
   const videoSole = `${import.meta.env.BASE_URL}videos/sole.mp4`;
-
 
   return (
     <>
       <div className="absolute inset-0 w-full h-full object-cover -z-2">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover -z-2"
-        >
-          <source
-            src={videoTerra}
-            type="video/mp4"
-            className="hidden hover:hidden-none"
-          />
-          Ton navigateur ne supporte pas la vidéo HTML5.
-        </video>
         <Alieno />
 
         <video
