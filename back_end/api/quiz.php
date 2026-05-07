@@ -16,16 +16,20 @@ for ($i = 0; $i < $n; $i++) {
   $pays = getRandomPays(4);
   $bonPays = $pays[0];
 
+  $options = [
+    $pays[0]['capital'],
+    $pays[1]['capital'],
+    $pays[2]['capital'],
+    $pays[3]['capital'],
+  ];
+
+  shuffle($options);
+
   $questions[] = [
     'statement' => 'Quelle est la capitale de ' . $bonPays['name'] . ' ?',
     'answer'    => $bonPays['capital'],
     'flag'      => $bonPays['flag'],
-    'options'   => [
-      $pays[0]['capital'],
-      $pays[1]['capital'],
-      $pays[2]['capital'],
-      $pays[3]['capital'],
-    ]
+    'options'   => $options
   ];
 }
 
