@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx"; //ho tolto usetate per utilizzare il cotext
 
 function ModeDeJeu() {
-  const videoLune = `${import.meta.env.BASE_URL}videos/terra2.mp4`;
+  const videoLune = `${import.meta.env.BASE_URL}videos/due2.mp4`;
   const { mode, setMode } = useQuiz();
 
   return (
