@@ -5,7 +5,7 @@ import { useQuiz } from "../context/QuizContext.jsx";
 function Quiz() {
   const { mode, setScore } = useQuiz();
   const navigate = useNavigate();
-  const videoTerra = `${import.meta.env.BASE_URL}videos/terra.mp4`;
+  const videoLune = `${import.meta.env.BASE_URL}videos/due3.mp4`;
   const [question, setQuestion] = useState(null); //  PHP>
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
@@ -47,7 +47,7 @@ function Quiz() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center text-white mb-20">
+    <div className="flex flex-col items-center justify-center text-white mb-20 bg-black/50 ml-50 mr-100 p-4 rounded-xl ">
       <h1 className="text-4xl font-bold mb-4">Quiz</h1>
       <p>
         Mode choisi : <span className="font-bold">{mode}</span>
@@ -61,7 +61,7 @@ function Quiz() {
         className="absolute inset-0 w-full h-full object-cover -z-2"
       >
         <source
-          src={videoTerra}
+          src={videoLune}
           type="video/mp4"
           className="hidden hover:hidden-none"
         />
