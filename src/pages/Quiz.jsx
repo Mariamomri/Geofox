@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx";
 
 function Quiz() {
-  const { mode } = useQuiz();
+  const { mode, setScore } = useQuiz();
+  const navigate = useNavigate();
   const videoTerra = `${import.meta.env.BASE_URL}videos/terra.mp4`;
   const [question, setQuestion] = useState(null); //  PHP>
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
+  const [scoreLocale, setScoreLocale] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost/Geofox/back_end/api/quiz.php")
@@ -22,7 +25,11 @@ function Quiz() {
   }, []); // [] = esegui solo una volta
 
   function handleReponse(option) {
-    setSelected(option); // salva la risposta scelta
+    setSelected(option);
+
+    if (option === question.answer) {
+      setScoreLocale(scoreLocale + 1); //contare le risposte giuste
+    }
   }
 
   if (loading) {
@@ -31,6 +38,12 @@ function Quiz() {
         <p>Chargement...</p>
       </div>
     );
+  }
+
+  // Sauvegarde le score dans le Context et redirige vers Resultats
+  function terminerQuiz() {
+    setScore(scoreLocale);
+    navigate("/resultats");
   }
 
   return (
@@ -97,6 +110,15 @@ function Quiz() {
             ? "inserire gif ok Bonne réponse !"
             : "inserire gif err Mauvaise réponse !"}
         </p>
+      )}
+
+      {selected && (
+        <button
+          onClick={terminerQuiz}
+          className="mt-4 bg-white text-black px-8 py-3 rounded-full font-bold uppercase hover:scale-105 transition-all cursor-pointer mb-20"
+        >
+          Terminer le quiz
+        </button>
       )}
     </div>
   );
