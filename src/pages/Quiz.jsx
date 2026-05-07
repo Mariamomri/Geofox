@@ -1,59 +1,82 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx";
+import { fetchQuiz } from "../services/api.js";
+
+const TIME_PER_QUESTION = 10;
 
 function Quiz() {
-  const TOTAL_DOMANDE = 5;
-  const SECONDI_TIMER = 10;
   const { mode, setScore } = useQuiz();
   const navigate = useNavigate();
   const videoLune = `${import.meta.env.BASE_URL}videos/due3.mp4`;
-  const [question, setQuestion] = useState(null); //  PHP>
-  const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState(null);
-  const [scoreLocale, setScoreLocale] = useState(0);
-  const [numeroQuestion, setNumeroQuestion] = useState(1);
-  const [timer, setTimer] = useState(SECONDI_TIMER);
 
-  function caricaDomanda() {
-    setLoading(true);
-    setSelected(null);
-    setTimer(SECONDI_TIMER);
-    fetch("http://localhost/Geofox/back_end/api/quiz.php")
-      .then((response) => response.json())
+  const [questions, setQuestions] = useState([]); // tutte le domande
+  const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0); // domanda attuale
+  const [scoreLocale, setScoreLocale] = useState(0);
+  const [selected, setSelected] = useState(null);
+  const [feedback, setFeedback] = useState(null); // 'good' | 'bad' | null
+  const [timeLeft, setTimeLeft] = useState(TIME_PER_QUESTION);
+
+  // Carica TUTTE le domande una sola volta
+  useEffect(() => {
+    fetchQuiz(10)
       .then((data) => {
-        setQuestion(data);
+        setQuestions(data);
         setLoading(false);
       })
       .catch((error) => {
         console.log("Erreur : ", error);
         setLoading(false);
       });
-  }
-
-  useEffect(() => {
-    caricaDomanda();
   }, []);
 
+  const current = questions[currentIndex];
+  const isLast = currentIndex === questions.length - 1;
+
+  // Passa alla domanda successiva (o vai ai risultati)
+  const goNext = useCallback(() => {
+    if (isLast) {
+      setScore(scoreLocale);
+      navigate("/resultats");
+    } else {
+      setCurrentIndex((i) => i + 1);
+      setSelected(null);
+      setFeedback(null);
+      setTimeLeft(TIME_PER_QUESTION);
+    }
+  }, [isLast, scoreLocale, setScore, navigate]);
+
+  // Gestisce la risposta dell'utente
+  function handleSelect(option) {
+    if (selected !== null) return; // blocca doppio click
+
+    setSelected(option);
+    if (option === current.answer) {
+      setScoreLocale((s) => s + 1);
+      setFeedback("good");
+    } else {
+      setFeedback("bad");
+    }
+
+    // Passa automaticamente dopo 1.2s
+    setTimeout(goNext, 1200);
+  }
+
+  // Timer — solo in modalità "time"
   useEffect(() => {
-    if (mode !== "time" || selected !== null || loading) return;
-    if (timer === 0) {
-      setSelected("__timeout__");
+    if (mode !== "time" || loading || !current || selected !== null) return;
+
+    if (timeLeft <= 0) {
+      setSelected("__TIMEOUT__");
+      setFeedback("bad");
+      setTimeout(goNext, 1000);
       return;
     }
-    const intervallo = setTimeout(() => {
-      setTimer(timer - 1);
-    }, 1000);
-    return () => clearTimeout(intervallo);
-  }, [timer, mode, selected, loading]);
 
-  function handleReponse(option) {
-    setSelected(option);
-
-    if (option === question.answer) {
-      setScoreLocale(scoreLocale + 1); //contare le risposte giuste
-    }
-  }
+    const timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [mode, timeLeft, loading, current, selected, goNext]);
 
   if (loading) {
     return (
@@ -63,74 +86,72 @@ function Quiz() {
     );
   }
 
-  // Sauvegarde le score dans le Context et redirige vers Resultats
-  function domandaSuccessiva() {
-    if (numeroQuestion >= TOTAL_DOMANDE) {
-      setScore(scoreLocale);
-      navigate("/resultats");
-    } else {
-      setNumeroQuestion(numeroQuestion + 1);
-      caricaDomanda();
-    }
-  }
+  if (!current) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center text-white mb-20 bg-black/50 ml-50 mr-100 p-4 rounded-xl ">
-      <h1 className="text-4xl font-bold mb-4">Quiz</h1>
-
-      <p className="text-white/50 text-sm mb-2">
-        Question <span className="text-white font-bold">{numeroQuestion}</span>{" "}
-        / {TOTAL_DOMANDE}
-      </p>
-
-      {mode === "time" && selected === null && (
-        <div
-          className={`text-3xl font-black mb-4 ${timer <= 3 ? "text-red-400" : "text-white"}`}
-        >
-          ⏱️ {timer}s
-        </div>
-      )}
-
-      <p>
-        Mode choisi : <span className="font-bold">{mode}</span>
-      </p>
-
+    <div className="flex flex-col items-center justify-center min-h-screen text-white px-4">
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover -z-2"
+        className="absolute inset-0 w-full h-full object-cover -z-10"
       >
-        <source
-          src={videoLune}
-          type="video/mp4"
-          className="hidden hover:hidden-none"
-        />
-        Ton navigateur ne supporte pas la vidéo HTML5.
+        <source src={videoLune} type="video/mp4" />
       </video>
 
-      {question.flag && (
+      {/* Progression */}
+      <div className="flex justify-between w-full max-w-xl mb-4 text-sm">
+        <span>
+          Question <b>{currentIndex + 1}</b> / {questions.length}
+        </span>
+        <span>
+          Score : <b>{scoreLocale}</b>
+        </span>
+      </div>
+
+      {/* Barre de progression */}
+      <div className="w-full max-w-xl h-2 bg-white/20 rounded-full mb-6">
+        <div
+          className="h-full bg-white rounded-full transition-all duration-300"
+          style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
+        />
+      </div>
+
+      {/* Timer */}
+      {mode === "time" && selected === null && (
+        <div
+          className={`text-3xl font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-white"}`}
+        >
+          ⏱️ {timeLeft}s
+        </div>
+      )}
+
+      {/* Drapeau */}
+      {current.flag && (
         <img
-          src={question.flag}
+          src={current.flag}
           alt="drapeau"
           className="w-32 h-20 object-cover rounded mb-6 border-2 border-white/20"
         />
       )}
 
+      {/* Question */}
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-        {question.statement}
+        {current.statement}
       </h2>
 
+      {/* Les 4 options */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl">
-        {question.options.map((option, index) => (
+        {current.options.map((option, index) => (
           <button
             key={index}
-            onClick={() => handleReponse(option)}
-            className={`p-4 rounded-xl border-2 font-semibold transition-all cursor-pointer ${
+            onClick={() => handleSelect(option)}
+            disabled={selected !== null}
+            className={`p-4 rounded-xl border-2 font-semibold transition-all ${
               selected === null
-                ? "border-white/30 hover:border-white"
-                : option === question.answer
+                ? "border-white/30 hover:border-white cursor-pointer"
+                : option === current.answer
                   ? "border-green-400 bg-green-400/20 text-green-300"
                   : option === selected
                     ? "border-red-400 bg-red-400/20 text-red-300"
@@ -142,27 +163,17 @@ function Quiz() {
         ))}
       </div>
 
-      {selected && (
+      {/* Feedback — automatique après 1.2s */}
+      {feedback && (
         <p
-          className={`mt-6 text-lg font-bold ${
-            selected === question.answer ? "text-green-400" : "text-red-400"
-          }`}
+          className={`mt-6 text-lg font-bold ${feedback === "good" ? "text-green-400" : "text-red-400"}`}
         >
-          {selected === question.answer
-            ? "inserire gif ok Bonne réponse !"
-            : "inserire gif err Mauvaise réponse !"}
+          {feedback === "good"
+            ? " Bonne réponse !"
+            : selected === "__TIMEOUT__"
+              ? " Temps écoulé !"
+              : " Mauvaise réponse !"}
         </p>
-      )}
-
-      {selected && (
-        <button
-          onClick={domandaSuccessiva}
-          className="mt-10 bg-white text-black px-8 py-3 rounded-full font-bold uppercase hover:scale-105 transition-all"
-        >
-          {numeroQuestion >= TOTAL_DOMANDE
-            ? "Voir les résultats "
-            : "Question suivante "}
-        </button>
       )}
     </div>
   );
@@ -170,4 +181,9 @@ function Quiz() {
 
 export default Quiz;
 
-/*Quando l'utente arriva sulla pagina Quiz, useEffect si esegue automaticamente e fa una chiamata fetch all'endpoint PHP. PHP legge 4 paesi casuali dal database con PDO, crea una domanda con la risposta giusta e 3 distrattori, e risponde in JSON. React riceve il JSON, lo salva con useState e lo mostra. Quando l'utente clicca una risposta, handleReponse salva la scelta e il ternario nel className mostra verde per la risposta giusta e rosso per quella sbagliata.*/
+/*
+  Quando l'utente arriva sulla pagina Quiz, useEffect carica tutte le domande
+  una sola volta da PHP tramite fetchQuiz() in services/api.js.
+  handleSelect gestisce la risposta e passa automaticamente alla domanda 
+  successiva dopo 1.2s. Il timer useEffect si attiva solo in modalità "time".
+*/
