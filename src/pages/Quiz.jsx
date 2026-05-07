@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx";
 
 function Quiz() {
+  const TOTAL_DOMANDE = 5;
+  const SECONDI_TIMER = 10;
   const { mode, setScore } = useQuiz();
   const navigate = useNavigate();
   const videoLune = `${import.meta.env.BASE_URL}videos/due3.mp4`;
@@ -10,10 +12,15 @@ function Quiz() {
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
   const [scoreLocale, setScoreLocale] = useState(0);
+  const [numeroQuestion, setNumeroQuestion] = useState(1);
+  const [timer, setTimer] = useState(SECONDI_TIMER);
 
-  useEffect(() => {
+  function caricaDomanda() {
+    setLoading(true);
+    setSelected(null);
+    setTimer(SECONDI_TIMER);
     fetch("http://localhost/Geofox/back_end/api/quiz.php")
-      .then((response) => response.json()) // converte la risposta in oggetto JS
+      .then((response) => response.json())
       .then((data) => {
         setQuestion(data);
         setLoading(false);
@@ -22,7 +29,23 @@ function Quiz() {
         console.log("Erreur : ", error);
         setLoading(false);
       });
-  }, []); // [] = esegui solo una volta
+  }
+
+  useEffect(() => {
+    caricaDomanda();
+  }, []);
+
+  useEffect(() => {
+    if (mode !== "time" || selected !== null || loading) return;
+    if (timer === 0) {
+      setSelected("__timeout__");
+      return;
+    }
+    const intervallo = setTimeout(() => {
+      setTimer(timer - 1);
+    }, 1000);
+    return () => clearTimeout(intervallo);
+  }, [timer, mode, selected, loading]);
 
   function handleReponse(option) {
     setSelected(option);
@@ -41,14 +64,33 @@ function Quiz() {
   }
 
   // Sauvegarde le score dans le Context et redirige vers Resultats
-  function terminerQuiz() {
-    setScore(scoreLocale);
-    navigate("/resultats");
+  function domandaSuccessiva() {
+    if (numeroQuestion >= TOTAL_DOMANDE) {
+      setScore(scoreLocale);
+      navigate("/resultats");
+    } else {
+      setNumeroQuestion(numeroQuestion + 1);
+      caricaDomanda();
+    }
   }
 
   return (
     <div className="flex flex-col items-center justify-center text-white mb-20 bg-black/50 ml-50 mr-100 p-4 rounded-xl ">
       <h1 className="text-4xl font-bold mb-4">Quiz</h1>
+
+      <p className="text-white/50 text-sm mb-2">
+        Question <span className="text-white font-bold">{numeroQuestion}</span>{" "}
+        / {TOTAL_DOMANDE}
+      </p>
+
+      {mode === "time" && selected === null && (
+        <div
+          className={`text-3xl font-black mb-4 ${timer <= 3 ? "text-red-400" : "text-white"}`}
+        >
+          ⏱️ {timer}s
+        </div>
+      )}
+
       <p>
         Mode choisi : <span className="font-bold">{mode}</span>
       </p>
@@ -114,10 +156,12 @@ function Quiz() {
 
       {selected && (
         <button
-          onClick={terminerQuiz}
-          className="mt-4 bg-white text-black px-8 py-3 rounded-full font-bold uppercase hover:scale-105 transition-all cursor-pointer mb-20"
+          onClick={domandaSuccessiva}
+          className="mt-10 bg-white text-black px-8 py-3 rounded-full font-bold uppercase hover:scale-105 transition-all"
         >
-          Terminer le quiz
+          {numeroQuestion >= TOTAL_DOMANDE
+            ? "Voir les résultats "
+            : "Question suivante "}
         </button>
       )}
     </div>
