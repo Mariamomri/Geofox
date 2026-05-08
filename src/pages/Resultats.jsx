@@ -41,7 +41,7 @@ function Resultats() {
       {/* Boutons */}
       <div className="flex gap-4">
         <Link
-          to="/modes"
+          to="/modeDeJeu"
           onClick={rejouer}
           className="bg-white text-black px-8 py-3 rounded-full font-bold uppercase hover:scale-105 transition-all"
         >
