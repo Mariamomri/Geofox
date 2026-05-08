@@ -2,7 +2,8 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx";
 import { fetchQuiz } from "../services/api.js";
-// import img from "../assets/img/volpemare.png";
+import img from "../assets/img/volpe1.png";
+import clesidra from "../assets/img/clesidra.gif";
 
 const TIME_PER_QUESTION = 10;
 
@@ -91,7 +92,7 @@ function Quiz() {
   if (!current) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-white px-4 max-w-2xl mx-auto w-full bg-black/50 reounded-lg border-5 mt-0">
+    <div className="flex flex-col items-center justify-center text-white px-3 max-w-2xl mx-auto w-full bg-black/50 reounded-lg border-5 mt-0">
       <video
         autoPlay
         muted
@@ -102,14 +103,14 @@ function Quiz() {
         <source src={videoLune} type="video/mp4" />
       </video>
 
-      {/* <img
+      <img
         src={img}
-        alt="Volpe Mare"
-        className=" w-70 float-left mr-270 mt-70 z-10"
-      /> */}
+        alt="Volpe"
+        className=" w-80 float-left absolute mr-244 mt-53 z-10"
+      />
 
       {/* Progression */}
-      <div className="flex justify-between w-full max-w-xl mb-4 text-sm">
+      <div className="flex justify-between w-full max-w-xl mb-4 mt-2 text-sm">
         <span>
           Question <b>{currentIndex + 1}</b> / {questions.length}
         </span>
@@ -119,7 +120,7 @@ function Quiz() {
       </div>
 
       {/* Barre de progression */}
-      <div className="w-full max-w-xl h-2 bg-white/20 rounded-full mb-6">
+      <div className="w-full max-w-xl h-2 bg-white/20 rounded-full mb-3 relative">
         <div
           className="h-full bg-white rounded-full transition-all duration-300"
           style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
@@ -129,9 +130,9 @@ function Quiz() {
       {/* Timer */}
       {mode === "Contre la montre" && selected === null && (
         <div
-          className={`text-3xl font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-white"}`}
+          className={`text-5xl float-right ml-240 mb-50 absolute z-10 flex flex-col items-center justify-center font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400 p-0 m-0"}`}
         >
-          ⏱️ {timeLeft}s
+          {timeLeft}s <img src={clesidra} alt="Clesidra" className="w-35" />
         </div>
       )}
 
@@ -149,7 +150,7 @@ function Quiz() {
       </h2>
 
       {/* Les 4 options */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl mb-6">
         {current.options.map((option, index) => (
           <button
             key={index}
@@ -170,18 +171,20 @@ function Quiz() {
         ))}
       </div>
 
-      {/* Feedback — automatique après 1.2s */}
-      {feedback && (
-        <p
-          className={`mt-6 text-lg font-bold ${feedback === "good" ? "text-green-400" : "text-red-400"}`}
-        >
-          {feedback === "good"
-            ? " Bonne réponse !"
-            : selected === "__TIMEOUT__"
-              ? " Temps écoulé !"
-              : " Mauvaise réponse !"}
-        </p>
-      )}
+      <div className="flex flex-col absolute z-20  ml-250 mb-50 items-center justify-center text-white px-3 max-w-2xl mx-auto">
+        {/* Feedback — automatique après 1.2s */}
+        {feedback && (
+          <p
+            className={`mt-6 text-xl font-bold ${feedback === "good" ? "text-green-400" : "text-red-400"}`}
+          >
+            {feedback === "good"
+              ? " Bonne réponse !"
+              : selected === "__TIMEOUT__"
+                ? " Temps écoulé !"
+                : " Mauvaise réponse !"}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
