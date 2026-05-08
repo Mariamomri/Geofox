@@ -10,7 +10,7 @@ function Header() {
   }
 
   return (
-    <header className="bg-transparent text-white p-4 flex items-center justify-between relative z-50">
+    <header className="bg-transparent text-white p-4 pb-0 flex items-center justify-between relative z-50">
       <img src={logo} alt="Logo" className="h-16 md:h-20" />
 
       <nav className="hidden md:flex items-center gap-8">
