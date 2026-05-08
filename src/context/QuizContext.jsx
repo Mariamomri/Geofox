@@ -7,7 +7,7 @@ import { createContext, useContext, useState } from "react";
 const QuizContext = createContext(null);
 
 export function QuizProvider({ children }) {
-  const [mode, setMode] = useState("normal");
+  const [mode, setMode] = useState("Contre la montre");
   const [score, setScore] = useState(0);
 
   return (

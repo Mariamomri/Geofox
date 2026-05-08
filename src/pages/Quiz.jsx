@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx";
 import { fetchQuiz } from "../services/api.js";
+// import img from "../assets/img/volpemare.png";
 
 const TIME_PER_QUESTION = 10;
 
@@ -65,7 +66,8 @@ function Quiz() {
 
   // Timer — solo in modalità "time"
   useEffect(() => {
-    if (mode !== "time" || loading || !current || selected !== null) return;
+    if (mode !== "Contre la montre" || loading || !current || selected !== null)
+      return;
 
     if (timeLeft <= 0) {
       setSelected("__TIMEOUT__");
@@ -89,7 +91,7 @@ function Quiz() {
   if (!current) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-white px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen text-white px-4 max-w-2xl mx-auto w-full bg-black/50 reounded-lg border-5 mt-0">
       <video
         autoPlay
         muted
@@ -99,6 +101,12 @@ function Quiz() {
       >
         <source src={videoLune} type="video/mp4" />
       </video>
+
+      {/* <img
+        src={img}
+        alt="Volpe Mare"
+        className=" w-70 float-left mr-270 mt-70 z-10"
+      /> */}
 
       {/* Progression */}
       <div className="flex justify-between w-full max-w-xl mb-4 text-sm">
@@ -119,7 +127,7 @@ function Quiz() {
       </div>
 
       {/* Timer */}
-      {mode === "time" && selected === null && (
+      {mode === "Contre la montre" && selected === null && (
         <div
           className={`text-3xl font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-white"}`}
         >
@@ -127,7 +135,6 @@ function Quiz() {
         </div>
       )}
 
-      {/* Drapeau */}
       {current.flag && (
         <img
           src={current.flag}
