@@ -2,7 +2,37 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx";
 import { fetchQuiz } from "../services/api.js";
-import img from "../assets/img/volpe1.png";
+<div className="flex gap-6 mb-10">
+  <button
+    onClick={() => setMode("Normal")}
+    className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
+      mode === "Normal"
+        ? "border-white bg-white/20"
+        : "border-white/30 bg-white/5"
+    }`}
+  >
+    <div className="text-4xl mb-2">
+      <img src={yoga} alt="Yoga" className="w-50 " />
+    </div>
+    <p className="font-bold">Mode normal</p>
+    <p className="text-sm text-white/80">Sans limite de temps</p>
+  </button>
+
+  <button
+    onClick={() => setMode("Contre la montre")}
+    className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
+      mode === "Contre la montre"
+        ? "border-white bg-white/20"
+        : "border-white/30 bg-white/5"
+    }`}
+  >
+    <div className="text-4xl mb-2">
+      <img src={orologio} alt="Orologio" className="w-20 ml-10 mb-5 mt-5" />
+    </div>
+    <p className="font-bold">Contre la montre</p>
+    <p className="text-sm text-white/80">10 secondes par question</p>
+  </button>
+</div>;
 import clesidra from "../assets/img/clesidra.gif";
 
 const TIME_PER_QUESTION = 10;
@@ -103,11 +133,41 @@ function Quiz() {
         <source src={videoLune} type="video/mp4" />
       </video>
 
-      <img
-        src={img}
-        alt="Volpe"
-        className=" w-80 float-left absolute mr-244 mt-53 z-10"
-      />
+      <div className="flex gap-6 mb-10">
+        <button
+          onClick={() => setMode("Normal")}
+          className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
+            mode === "Normal"
+              ? "border-white bg-white/20"
+              : "border-white/30 bg-white/5"
+          }`}
+        >
+          <div className="text-4xl mb-2">
+            <img src={yoga} alt="Yoga" className="w-50 " />
+          </div>
+          <p className="font-bold">Mode normal</p>
+          <p className="text-sm text-white/80">Sans limite de temps</p>
+        </button>
+
+        <button
+          onClick={() => setMode("Contre la montre")}
+          className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
+            mode === "Contre la montre"
+              ? "border-white bg-white/20"
+              : "border-white/30 bg-white/5"
+          }`}
+        >
+          <div className="text-4xl mb-2">
+            <img
+              src={orologio}
+              alt="Orologio"
+              className="w-20 ml-10 mb-5 mt-5"
+            />
+          </div>
+          <p className="font-bold">Contre la montre</p>
+          <p className="text-sm text-white/80">10 secondes par question</p>
+        </button>
+      </div>
 
       {/* Progression */}
       <div className="flex justify-between w-full max-w-xl mb-4 mt-2 text-sm">
