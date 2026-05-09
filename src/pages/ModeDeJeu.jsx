@@ -35,7 +35,7 @@ function ModeDeJeu() {
         </div>
 
         {/* div quadri */}
-        <div className="flex flex-col items-center justify-center text-white px-3 max-w-2xl mx-auto bg-black/50 ml-80 rounded-lg mt-0 mb-15">
+        <div className="flex flex-col items-center justify-center text-white px-3 max-w-2xl mx-auto bg-black/50 ml-80 rounded-lg mt-0 mb-15 w-120">
           <div className="flex gap-10 mb-14 mt-6 w-100">
             <button
               onClick={() => setMode("Normal")}
