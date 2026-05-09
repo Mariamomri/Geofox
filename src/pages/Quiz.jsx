@@ -2,37 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx";
 import { fetchQuiz } from "../services/api.js";
-<div className="flex gap-6 mb-10">
-  <button
-    onClick={() => setMode("Normal")}
-    className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
-      mode === "Normal"
-        ? "border-white bg-white/20"
-        : "border-white/30 bg-white/5"
-    }`}
-  >
-    <div className="text-4xl mb-2">
-      <img src={yoga} alt="Yoga" className="w-50 " />
-    </div>
-    <p className="font-bold">Mode normal</p>
-    <p className="text-sm text-white/80">Sans limite de temps</p>
-  </button>
-
-  <button
-    onClick={() => setMode("Contre la montre")}
-    className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
-      mode === "Contre la montre"
-        ? "border-white bg-white/20"
-        : "border-white/30 bg-white/5"
-    }`}
-  >
-    <div className="text-4xl mb-2">
-      <img src={orologio} alt="Orologio" className="w-20 ml-10 mb-5 mt-5" />
-    </div>
-    <p className="font-bold">Contre la montre</p>
-    <p className="text-sm text-white/80">10 secondes par question</p>
-  </button>
-</div>;
+import img from "../assets/img/volpe.png";
 import clesidra from "../assets/img/clesidra.gif";
 
 const TIME_PER_QUESTION = 10;
@@ -122,7 +92,7 @@ function Quiz() {
   if (!current) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center text-white px-3 max-w-2xl mx-auto w-full bg-black/50 reounded-lg border-5 mt-0">
+    <div className="flex flex-col items-center justify-center text-white px-3 max-w-2xl mx-auto w-full bg-black/70 rounded-lg  mt-0 ml-100">
       <video
         autoPlay
         muted
@@ -133,41 +103,11 @@ function Quiz() {
         <source src={videoLune} type="video/mp4" />
       </video>
 
-      <div className="flex gap-6 mb-10">
-        <button
-          onClick={() => setMode("Normal")}
-          className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
-            mode === "Normal"
-              ? "border-white bg-white/20"
-              : "border-white/30 bg-white/5"
-          }`}
-        >
-          <div className="text-4xl mb-2">
-            <img src={yoga} alt="Yoga" className="w-50 " />
-          </div>
-          <p className="font-bold">Mode normal</p>
-          <p className="text-sm text-white/80">Sans limite de temps</p>
-        </button>
-
-        <button
-          onClick={() => setMode("Contre la montre")}
-          className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
-            mode === "Contre la montre"
-              ? "border-white bg-white/20"
-              : "border-white/30 bg-white/5"
-          }`}
-        >
-          <div className="text-4xl mb-2">
-            <img
-              src={orologio}
-              alt="Orologio"
-              className="w-20 ml-10 mb-5 mt-5"
-            />
-          </div>
-          <p className="font-bold">Contre la montre</p>
-          <p className="text-sm text-white/80">10 secondes par question</p>
-        </button>
-      </div>
+      <img
+        src={img}
+        alt="Volpe"
+        className=" w-80 float-left absolute ml-210 mt-53 z-10"
+      />
 
       {/* Progression */}
       <div className="flex justify-between w-full max-w-xl mb-4 mt-2 text-sm">
@@ -190,9 +130,9 @@ function Quiz() {
       {/* Timer */}
       {mode === "Contre la montre" && selected === null && (
         <div
-          className={`text-5xl float-right ml-240 mb-50 absolute z-10 flex flex-col items-center justify-center font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400 p-0 m-0"}`}
+          className={`text-5xl float-right mr-240 mb-100 absolute z-10 flex flex-col items-center justify-center font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400 p-0 m-0"}`}
         >
-          {timeLeft}s <img src={clesidra} alt="Clesidra" className="w-35" />
+          <img src={clesidra} alt="Clesidra" className="w-30" /> {timeLeft}s
         </div>
       )}
 
@@ -231,7 +171,7 @@ function Quiz() {
         ))}
       </div>
 
-      <div className="flex flex-col absolute z-20  ml-250 mb-50 items-center justify-center text-white px-3 max-w-2xl mx-auto">
+      <div className="flex flex-col absolute z-20  mr-230 mb-80 items-center justify-center text-white px-3 max-w-2xl mx-auto">
         {/* Feedback — automatique après 1.2s */}
         {feedback && (
           <p
