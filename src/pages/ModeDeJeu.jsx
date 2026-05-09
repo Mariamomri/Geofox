@@ -27,23 +27,28 @@ function ModeDeJeu() {
       </video>
 
       <section className="flex  justify-around items-center ">
-        <div className="flex flex-col items-center justify-center text-white">
-          <h1 className="text-4xl font-bold mb-4">Choisis ton mode de jeu</h1>
-          <p className="text-white/80 mb-8">Quel défi veux-tu relever ?</p>
+        <div className="flex flex-col items-center justify-center text-white ">
+          <h1 className="text-4xl font-bold mb-4 p-5 ">
+            Choisis ton mode de jeu
+          </h1>
+          <p className="text-white/80 mb-80">Quel défi veux-tu relever ?</p>
+        </div>
 
-          <div className="flex gap-6 mb-10">
+        {/* div quadri */}
+        <div className="flex flex-col items-center justify-center text-white px-3 max-w-2xl mx-auto bg-black/50 ml-80 rounded-lg mt-0 mb-15">
+          <div className="flex gap-10 mb-14 mt-6 w-100">
             <button
               onClick={() => setMode("Normal")}
-              className={`p-6 rounded-2xl border-2 transition-all cursor-pointer ${
+              className={` rounded-2xl border-2 transition-all cursor-pointer ${
                 mode === "Normal"
                   ? "border-white bg-white/20"
                   : "border-white/30 bg-white/5"
               }`}
             >
-              <div className="text-4xl mb-2">
+              <div className="text-4xl mb-2 ">
                 <img src={yoga} alt="Yoga" className="w-50 " />
               </div>
-              <p className="font-bold">Mode normal</p>
+              <p className="font-bold text-white">Mode normal</p>
               <p className="text-sm text-white/80">Sans limite de temps</p>
             </button>
 
@@ -59,27 +64,27 @@ function ModeDeJeu() {
                 <img
                   src={orologio}
                   alt="Orologio"
-                  className="w-20 ml-10 mb-5 mt-5"
+                  className="w-20 ml-10 mb-2 "
                 />
               </div>
               <p className="font-bold">Contre la montre</p>
               <p className="text-sm text-white/80">10 secondes par question</p>
             </button>
           </div>
-        </div>
 
-        <div>
-          <p className="mb-6 text-white/70">
-            Mode sélectionné :{" "}
-            <span className="font-bold text-white">{mode}</span>
-          </p>
+          <div className="ml-10 flex gap-10 items-center">
+            <p className="mb-6 text-white/70">
+              Mode sélectionné :{" "}
+              <span className="font-bold text-white">{mode}</span>
+            </p>
 
-          <Link
-            to="/quiz"
-            className="bg-white text-black px-8 py-3 rounded-full font-bold uppercase hover:scale-105 transition-all"
-          >
-            PLAY
-          </Link>
+            <Link
+              to="/quiz"
+              className="bg-white text-black px-8 mb-6 py-3 rounded-full font-bold uppercase hover:scale-105 transition-all"
+            >
+              PLAY
+            </Link>
+          </div>
         </div>
       </section>
     </>
