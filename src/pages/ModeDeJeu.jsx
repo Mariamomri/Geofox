@@ -6,7 +6,7 @@ import { useQuiz } from "../context/QuizContext.jsx"; //ho tolto usetate per uti
 
 function ModeDeJeu() {
   const videoTerra = `${import.meta.env.BASE_URL}videos/due5.mp4`;
-  const { mode, setMode } = useQuiz();
+  const { mode, setMode, pseudo, setPseudo } = useQuiz();
 
   return (
     <>
@@ -28,10 +28,25 @@ function ModeDeJeu() {
 
       <section className="flex  justify-around items-center ">
         <div className="flex flex-col items-center justify-center text-white ">
-          <h1 className="text-4xl font-bold mb-4 p-5 ">
+          <h1 className="text-4xl font-bold mb-84 p-5 ">
             Choisis ton mode de jeu
           </h1>
-          <p className="text-white/80 mb-80">Quel défi veux-tu relever ?</p>
+
+          
+          {/* Input pseudo */}
+          <div className="mb-8 w-50 max-w-md absolute left-20 top-50">
+            <label className="block text-white text-sm font-semibold mb-2">
+              Entrez pseudo 
+            </label>
+            <input
+              type="text"
+              value={pseudo}
+              onChange={(e) => setPseudo(e.target.value)}
+              placeholder="Ex : Mariam"
+              maxLength={10}
+              className="w-full bg-white/10 border border-white/30 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:border-white focus:outline-none transition-colors"
+            />
+          </div>
         </div>
 
         {/* div quadri */}
