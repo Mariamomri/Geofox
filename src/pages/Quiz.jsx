@@ -107,7 +107,7 @@ function Quiz() {
         <img
           src={img}
           alt="Volpe"
-          className=" w-80 float-left absolute ml-210 mt-50 z-10"
+          className=" w-80 float-left absolute ml-205 mt-50 z-10"
         />
 
         {/* Progression */}
