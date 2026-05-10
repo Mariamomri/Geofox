@@ -2,9 +2,39 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx";
 
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useQuiz } from "../context/QuizContext.jsx";
+
 function Resultats() {
-  const { score, mode, setScore } = useQuiz(); // On lit le score depuis le Context
+  const { score, mode, setScore, pseudo } = useQuiz(); // On lit le score depuis le Context
   const videoTerra = `${import.meta.env.BASE_URL}videos/due.mp4`;
+
+  const [sauvegarde, setSauvegarde] = useState(false);
+  const [erreur, setErreur] = useState(null);
+
+  function rejouer() {
+    setScore(0);
+  }
+
+  // Sauvegarde automatique si pseudo renseigné
+  useEffect(() => {
+    if (!pseudo) return;
+
+    fetch("http://localhost/Geofox/back_end/api/scores.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        pseudo: pseudo,
+        score: score,
+        total: 10,
+        mode: mode,
+      }),
+    })
+      .then((res) => res.json())
+      .then(() => setSauvegarde(true))
+      .catch(() => setErreur("Erreur de sauvegarde"));
+  }, []); // s'exécute une seule fois à l'arrivée sur la page
 
   function rejouer() {
     setScore(0);
@@ -30,6 +60,21 @@ function Resultats() {
           bonne{score > 1 ? "s" : ""} réponse{score > 1 ? "s" : ""}
         </p>
       </div>
+
+      {/* Message de sauvegarde */}
+      {pseudo && (
+        <div className="mb-6 text-center">
+          {sauvegarde && (
+            <p className="text-green-400 font-bold">
+              ✅ Score sauvegardé pour {pseudo} !
+            </p>
+          )}
+          {erreur && <p className="text-red-400 text-sm">{erreur}</p>}
+          {!sauvegarde && !erreur && (
+            <p className="text-white/40 text-sm">Sauvegarde en cours...</p>
+          )}
+        </div>
+      )}
 
       <p className="text-lg mb-4 text-white/70">
         {score === 0 && "Ne lâche pas, tu vas y arriver ! "}
