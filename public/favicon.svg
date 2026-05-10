@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Cerchio esterno -->
+  <circle cx="100" cy="100" r="90" fill="url(#grad)" stroke="#0a3d62" stroke-width="6"/>
+
+  <!-- Gradiente oceano -->
+  <defs>
+    <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#4da6ff"/>
+      <stop offset="100%" stop-color="#005c99"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Continenti stilizzati -->
+  <path d="M70 60c10-15 35-20 50-10 10 5 15 15 10 25-5 10-20 15-30 10-10-5-20-10-30-25z"
+        fill="#7ed957"/>
+
+  <path d="M120 110c15-5 30 5 30 20 0 10-10 20-25 20-15 0-25-10-25-20 0-10 5-15 20-20z"
+        fill="#7ed957"/>
+
+  <path d="M60 120c-10 5-15 15-10 25 5 10 20 15 30 10 10-5 10-20 0-30-10-10-15-10-20-5z"
+        fill="#7ed957"/>
+</svg>

@@ -19,7 +19,7 @@ function Resultats() {
   }
 
   useEffect(() => {
-    if (!pseudo) return;
+    if (!pseudo || !score) return;
     if (giaeSalvato.current) return; // blocca se già salvato
     giaeSalvato.current = true; // segna come salvato
 
@@ -35,8 +35,8 @@ function Resultats() {
     })
       .then((res) => res.json())
       .then(() => setSauvegarde(true))
-      .catch(() => setErreur("Erreur de sauvegarde"));
-  }, []);
+      .catch(() => setErreur("Errore di salvataggio"));
+  }, [pseudo, score, mode]);
 
   //top 3
   useEffect(() => {
@@ -47,7 +47,7 @@ function Resultats() {
   }, [sauvegarde]);
 
   return (
-    <div className="flex flex-col items-center justify-center text-white px-4 bg-black/50 rounded-lg p-6 mr-50 ml-50   w-full max-w-4xl">
+    <div className="flex flex-col items-center justify-center text-white px-4 md:px-8 bg-black/50 rounded-lg p-6 mr-0 md:mr-50 ml-0 md:ml-50 w-full max-w-4xl">
       <video
         autoPlay
         muted
@@ -57,26 +57,28 @@ function Resultats() {
         <source src={videoTerra} type="video/mp4" />
       </video>
 
-      <h1 className="text-4xl md:text-5xl font-black mb-2">Résultats</h1>
-      <p className="text-white/50 mb-6">
+      <h1 className="text-3xl md:text-5xl font-black mb-2">Résultats</h1>
+      <p className="text-white/50 mb-6 text-sm md:text-base">
         Mode : <span className="text-white font-bold">{mode}</span>
       </p>
 
-      {/* Ligne principale : score à gauche + classement à droite */}
+      {/* Ligne principale : score a gauche + classement a droite */}
       <div className="flex flex-col md:flex-row gap-6 w-full max-w-3xl">
         {/* Colonne gauche — Score */}
         <div className="flex flex-col items-center flex-1">
           <div className="bg-white/10 border border-white/20 rounded-2xl p-4 text-center mb-4 w-full">
-            <p className="text-white/60 text-sm uppercase tracking-wider mb-2">
+            <p className="text-white/60 text-xs md:text-sm uppercase tracking-wider mb-2">
               Score final
             </p>
-            <p className="text-7xl font-black text-white mb-1">{score}</p>
-            <p className="text-white/50">
+            <p className="text-5xl md:text-7xl font-black text-white mb-1">
+              {score}
+            </p>
+            <p className="text-white/50 text-sm md:text-base">
               bonne{score > 1 ? "s" : ""} réponse{score > 1 ? "s" : ""}
             </p>
           </div>
 
-          <p className="text-lg mb-6 text-white/70 text-center">
+          <p className="text-base md:text-lg mb-6 text-white/70 text-center">
             {score === 0 && "Ne lâche pas, tu vas y arriver ! "}
             {score >= 1 && score <= 3 && "Pas mal, continue ! "}
             {score >= 4 && score <= 7 && "Bien joué ! "}
@@ -84,18 +86,18 @@ function Resultats() {
           </p>
 
           {/* Boutons */}
-          <div className="flex gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <Link
               to="/modeDeJeu"
               onClick={rejouer}
-              className="bg-white text-black px-8 py-3 rounded-full font-bold uppercase hover:scale-105 transition-all"
+              className="bg-white text-black px-6 md:px-8 py-2 md:py-3 rounded-full font-bold uppercase hover:scale-105 transition-all text-sm md:text-base"
             >
               Rejouer
             </Link>
             <Link
               to="/"
               onClick={rejouer}
-              className="border-2 border-white/30 text-white px-8 py-3 rounded-full font-bold uppercase hover:border-white transition-all "
+              className="border-2 border-white/30 text-white px-6 md:px-8 py-2 md:py-3 rounded-full font-bold uppercase hover:border-white transition-all text-sm md:text-base"
             >
               HOME
             </Link>
