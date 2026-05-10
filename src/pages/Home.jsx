@@ -25,7 +25,7 @@ function Home() {
           Ton navigateur ne supporte pas la vidéo HTML5.
         </video>
 
-        <div className=" divtext text-left px-20">
+        <div className=" divtext text-left px-5 sm:px-10 md:px-20">
           <h1 className="titolo">GEOFOX</h1>
           <p className="text-home">Quiz Démographique Mondial</p> <br />
           <p className="text-sm md:text-base text-white mb-10 max-w-xl mx-auto leading-relaxed">

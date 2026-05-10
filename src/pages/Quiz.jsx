@@ -71,9 +71,11 @@ function Quiz() {
       return;
 
     if (timeLeft <= 0) {
-      setSelected("__TIMEOUT__");
-      setFeedback("bad");
-      setTimeout(goNext, 1000);
+      setTimeout(() => {
+        setSelected("__TIMEOUT__");
+        setFeedback("bad");
+        goNext();
+      }, 0);
       return;
     }
 
@@ -93,109 +95,111 @@ function Quiz() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center text-white px-2 max-w-2xl mx-auto w-full bg-black/70 rounded-lg  mt-0 ml-100">
+      <div className="flex flex-col items-center justify-center text-white px-2 max-w-2xl mx-auto w-full bg-black/70 rounded-lg mt-0 ml-0 md:ml-100">
         <video
           autoPlay
           muted
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover -z-10"
-        >
-          <source src={videoLune} type="video/mp4" />
-        </video>
-
-        <img
-          src={img}
-          alt="Volpe"
-          className=" w-80 float-left absolute ml-205 mt-50 z-10"
-        />
-
-        {/* Progression */}
-        <div className="flex justify-between w-full max-w-xl mb-4 mt-2 text-sm">
-          <span>
-            Question <b>{currentIndex + 1}</b> / {questions.length}
-          </span>
-          <span>
-            Score : <b>{scoreLocale}</b>
-          </span>
-        </div>
-
-        {/* Barre de progression */}
-        <div className="w-full max-w-xl h-2 bg-white/20 rounded-full mb-3 relative">
-          <div
-            className="h-full bg-white rounded-full transition-all duration-300"
-            style={{
-              width: `${((currentIndex + 1) / questions.length) * 100}%`,
-            }}
-          />
-        </div>
-
-        {/* Pseudo du joueur */}
-        {pseudo && (
-          <p className="text-white/60 text-sm mb-2 w-full max-w-xl">
-            Joueur : <span className="text-orange-400 font-bold">{pseudo}</span>
-          </p>
-        )}
-
-        {/* Timer */}
-        {mode === "Contre la montre" && selected === null && (
-          <div
-            className={`text-5xl float-right mr-240 mb-100 absolute z-10 flex flex-col items-center justify-center font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400 p-0 m-0"}`}
           >
-            <img src={clesidra} alt="Clesidra" className="w-30" /> {timeLeft}s
-          </div>
-        )}
+            <source src={videoLune} type="video/mp4" />
+          </video>
 
-        {current.flag && (
           <img
-            src={current.flag}
-            alt="drapeau"
-            className="w-32 h-20 object-cover rounded mb-6 border-2 border-white/20"
+            src={img}
+            alt="Volpe"
+            className="hidden md:block w-80 float-left absolute md:ml-205 md:mt-50 z-10"
           />
-        )}
 
-        {/* Question */}
-        <h2 className="text-2xl md:text-2xl font-bold text-center mb-8 w-full max-w-xl">
-          {current.statement}
-        </h2>
+          {/* Progression */}
+          <div className="flex justify-between w-full max-w-xl mb-4 mt-2 text-sm">
+            <span>
+              Question <b>{currentIndex + 1}</b> / {questions.length}
+            </span>
+            <span>
+              Score : <b>{scoreLocale}</b>
+            </span>
+          </div>
 
-        {/* Les 4 options */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl mb-6">
-          {current.options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => handleSelect(option)}
-              disabled={selected !== null}
-              className={`p-4 rounded-xl border-2 font-semibold transition-all ${
-                selected === null
-                  ? "border-white/30 hover:border-white cursor-pointer"
-                  : option === current.answer
-                    ? "border-green-400 bg-green-400/20 text-green-300"
-                    : option === selected
-                      ? "border-red-400 bg-red-400/20 text-red-300"
-                      : "border-white/20 text-white/40"
-              }`}
-            >
-              {option}
-            </button>
-          ))}
-        </div>
+          {/* Barre de progression */}
+          <div className="w-full max-w-xl h-2 bg-white/20 rounded-full mb-3 relative">
+            <div
+              className="h-full bg-white rounded-full transition-all duration-300"
+              style={{
+                width: `${((currentIndex + 1) / questions.length) * 100}%`,
+              }}
+            />
+          </div>
 
-        <div className="flex flex-col absolute z-20  mr-230 mb-80 items-center justify-center text-white px-3 max-w-2xl mx-auto">
-          {/* Feedback — automatique après 1.2s */}
-          {feedback && (
-            <p
-              className={`mt-6 text-xl font-bold ${feedback === "good" ? "text-green-400" : "text-red-400"}`}
-            >
-              {feedback === "good"
-                ? " Bonne réponse !"
-                : selected === "__TIMEOUT__"
-                  ? " Temps écoulé !"
-                  : " Mauvaise réponse !"}
+          {/* Pseudo du joueur */}
+          {pseudo && (
+            <p className="text-white/60 text-sm mb-2 w-full max-w-xl">
+              Joueur :{" "}
+              <span className="text-orange-400 font-bold">{pseudo}</span>
             </p>
           )}
+
+          {/* Timer */}
+          {mode === "Contre la montre" && selected === null && (
+            <div
+              className={`text-3xl md:text-5xl absolute md:float-right md:mr-240 md:mb-100 z-10 flex flex-col items-center justify-center font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400 p-0 m-0"}`}
+            >
+              <img src={clesidra} alt="Clesidra" className="w-16 md:w-30" />{" "}
+              {timeLeft}s
+            </div>
+          )}
+
+          {current.flag && (
+            <img
+              src={current.flag}
+              alt="drapeau"
+              className="w-32 h-20 object-cover rounded mb-6 border-2 border-white/20"
+            />
+          )}
+
+          {/* Question */}
+          <h2 className="text-2xl md:text-2xl font-bold text-center mb-8 w-full max-w-xl">
+            {current.statement}
+          </h2>
+
+          {/* Les 4 options */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-xl mb-6">
+            {current.options.map((option, index) => (
+              <button
+                key={index}
+                onClick={() => handleSelect(option)}
+                disabled={selected !== null}
+                className={`p-4 rounded-xl border-2 font-semibold transition-all ${
+                  selected === null
+                    ? "border-white/30 hover:border-white cursor-pointer"
+                    : option === current.answer
+                      ? "border-green-400 bg-green-400/20 text-green-300"
+                      : option === selected
+                        ? "border-red-400 bg-red-400/20 text-red-300"
+                        : "border-white/20 text-white/40"
+                }`}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex flex-col md:absolute md:z-20 md:mr-230 md:mb-80 items-center justify-center text-white px-3 max-w-2xl mx-auto">
+            {/* Feedback — automatique après 1.2s */}
+            {feedback && (
+              <p
+                className={`mt-6 text-lg md:text-xl font-bold ${feedback === "good" ? "text-green-400" : "text-red-400"}`}
+              >
+                {feedback === "good"
+                  ? " Bonne réponse !"
+                  : selected === "__TIMEOUT__"
+                    ? " Temps écoulé !"
+                    : " Mauvaise réponse !"}
+              </p>
+            )}
+          </div>
         </div>
-      </div>
     </>
   );
 }
