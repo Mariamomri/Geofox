@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx";
 
@@ -11,12 +11,17 @@ function Resultats() {
 
   const [topScores, setTopScores] = useState([]);
 
+  // useRef evita che il salvataggio si ripeta
+  const giaeSalvato = useRef(false);
+
   function rejouer() {
     setScore(0);
   }
 
   useEffect(() => {
     if (!pseudo) return;
+    if (giaeSalvato.current) return; // blocca se già salvato
+    giaeSalvato.current = true; // segna come salvato
 
     fetch("http://localhost/Geofox/back_end/api/scores.php", {
       method: "POST",
@@ -24,18 +29,14 @@ function Resultats() {
       body: JSON.stringify({
         pseudo: pseudo,
         score: score,
-        total: 3,
+        total: 10,
         mode: mode,
       }),
     })
       .then((res) => res.json())
       .then(() => setSauvegarde(true))
       .catch(() => setErreur("Erreur de sauvegarde"));
-  }, []); // s'exécute une seule fois à l'arrivée sur la page
-
-  function rejouer() {
-    setScore(0);
-  }
+  }, []);
 
   //top 3
   useEffect(() => {
