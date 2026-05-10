@@ -12,7 +12,9 @@ export function QuizProvider({ children }) {
   const [pseudo, setPseudo] = useState("");
 
   return (
-    <QuizContext.Provider value={{ mode, setMode, score, setScore }}>
+    <QuizContext.Provider
+      value={{ mode, setMode, score, setScore, pseudo, setPseudo }}
+    >
       {children}
     </QuizContext.Provider>
   );
