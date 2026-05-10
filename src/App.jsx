@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Quiz from "./pages/Quiz";
 import Resultats from "./pages/Resultats";
 import ModeDeJeu from "./pages/ModeDeJeu";
+import Music from "./components/Music";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -20,6 +21,7 @@ function App() {
         <Route path="/modeDeJeu" element={<ModeDeJeu />} />
       </Routes>
       <Footer />
+      <Music />
     </>
   );
 }
