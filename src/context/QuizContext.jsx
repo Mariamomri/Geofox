@@ -9,6 +9,7 @@ const QuizContext = createContext(null);
 export function QuizProvider({ children }) {
   const [mode, setMode] = useState("Contre la montre");
   const [score, setScore] = useState(0);
+  const [pseudo, setPseudo] = useState("");
 
   return (
     <QuizContext.Provider value={{ mode, setMode, score, setScore }}>
