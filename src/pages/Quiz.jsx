@@ -93,7 +93,7 @@ function Quiz() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center text-white px-3 max-w-2xl mx-auto w-full bg-black/70 rounded-lg  mt-0 ml-100">
+      <div className="flex flex-col items-center justify-center text-white px-2 max-w-2xl mx-auto w-full bg-black/70 rounded-lg  mt-0 ml-100">
         <video
           autoPlay
           muted
@@ -107,7 +107,7 @@ function Quiz() {
         <img
           src={img}
           alt="Volpe"
-          className=" w-80 float-left absolute ml-210 mt-53 z-10"
+          className=" w-80 float-left absolute ml-210 mt-50 z-10"
         />
 
         {/* Progression */}
@@ -155,7 +155,7 @@ function Quiz() {
         )}
 
         {/* Question */}
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+        <h2 className="text-2xl md:text-2xl font-bold text-center mb-8 w-full max-w-xl">
           {current.statement}
         </h2>
 
