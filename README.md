@@ -68,3 +68,5 @@ Fonctionnalités attendues
    • Transformations en Json
    • Gestion des réponses (tester que votre Json est en mode api accessible à partir
    d’un fichier test)
+
+https://www.figma.com/design/pU2vHrlfntb88uKfJ10npn/Sans-titre?node-id=184-312&t=esOGQJV4Zbrk8nBR-1
