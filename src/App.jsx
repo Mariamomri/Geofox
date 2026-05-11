@@ -7,6 +7,7 @@ import Quiz from "./pages/Quiz";
 import Resultats from "./pages/Resultats";
 import ModeDeJeu from "./pages/ModeDeJeu";
 import Music from "./components/Music";
+import NotFound from "./pages/NotFound";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ function App() {
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/resultats" element={<Resultats />} />
         <Route path="/modeDeJeu" element={<ModeDeJeu />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       <Music />

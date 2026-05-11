@@ -6,7 +6,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 require_once '../classes/bd.php';
 
-// GET → retourne le top 3
+// GET top 3
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   try {
     $pdo = getConnexion();
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   exit;
 }
 
-// POST → sauvegarde un score
+// POST score
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $data = json_decode(file_get_contents('php://input'), true);
 
