@@ -39,14 +39,14 @@ function ModeDeJeu() {
       </video>
 
       {mostraDiv && (
-        <section className="flex  justify-around items-center ">
-          <div className="flex flex-col items-center justify-center text-white ">
+        <section className="flex  justify-around items-center mobilesectionmode">
+          <div className="flex flex-col items-center justify-center text-white dt">
             <h1 className="text-4xl font-bold mb-84 p-5 ">
               Choisis ton mode de jeu
             </h1>
 
             {/* Input pseudo */}
-            <div className="mb-8 w-50 max-w-md absolute left-20 top-50">
+            <div className="mb-8 w-50 max-w-md absolute left-20 top-50 mobilepseudo">
               <label className="block text-white text-sm font-semibold mb-2">
                 Entrez pseudo
               </label>
@@ -62,8 +62,8 @@ function ModeDeJeu() {
           </div>
 
           {/* div quadri */}
-          <div className="flex flex-col items-center justify-center text-white px-3 max-w-2xl mx-auto bg-black/50 ml-80 rounded-lg mt-0 mb-15 w-120">
-            <div className="flex gap-10 mb-14 mt-6 w-100">
+          <div className="flex flex-col items-center justify-center text-white px-3 max-w-2xl mx-auto bg-black/50 ml-80 rounded-lg mt-0 mb-15 w-120 mobiledivquadri">
+            <div className="flex gap-10 mb-14 mt-6 w-100 mobilebuttonmode">
               <button
                 onClick={() => setMode("Normal")}
                 className={` rounded-2xl border-2 transition-all cursor-pointer ${
@@ -91,17 +91,17 @@ function ModeDeJeu() {
                   <img
                     src={orologio}
                     alt="Orologio"
-                    className="w-20 ml-10 mb-2 "
+                    className="w-20 ml-10 mb-2 mobileorologio "
                   />
                 </div>
-                <p className="font-bold">Contre la montre</p>
+                <p className="font-bold wm">Contre la montre</p>
                 <p className="text-sm text-white/80">
                   10 secondes par question
                 </p>
               </button>
             </div>
 
-            <div className="ml-10 flex gap-10 items-center">
+            <div className="ml-10 flex gap-10 items-center ">
               <p className="mb-6 text-white/70">
                 Mode sélectionné :{" "}
                 <span className="font-bold text-white">{mode}</span>
