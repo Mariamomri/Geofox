@@ -95,17 +95,22 @@ function Quiz() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center text-white px-2 max-w-2xl mx-auto w-full bg-black/70 rounded-lg mt-0 ml-0 md:ml-100">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover -z-10"
-        >
-          <source src={videoLune} type="video/mp4" />
-        </video>
+      <video
+        autoPlay
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover -z-2"
+        onLoadedMetadata={(e) => (e.target.playbackRate = 3)}
+      >
+        <source
+          src={videoLune}
+          type="video/mp4"
+          className="hidden hover:hidden-none"
+        />
+        Ton navigateur ne supporte pas la vidéo HTML5.
+      </video>
 
+      <div className="flex flex-col items-center justify-center text-white px-2 max-w-2xl mx-auto w-full rounded-lg mt-0 ml-0 md:ml-100">
         <img
           src={img}
           alt="Volpe"
