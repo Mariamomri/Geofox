@@ -12,11 +12,7 @@ body {
     0 0 40px #ff8c00, 0 0 80px cyan;
 }
 
-@media (max-width: 768px) {
-  .titolo {
-    font-size: 2rem;
-  }
-}
+
 
 .text-home {
   font-size: 1.5rem;
@@ -25,11 +21,6 @@ body {
     0 0 24px #ff8c00, 0 0 48px cyan;
 }
 
-@media (max-width: 768px) {
-  .text-home {
-    font-size: 0.875rem;
-  }
-}
 
 .divtext {
   position: absolute;
@@ -38,27 +29,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 768px) {
-  .divtext {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .alieno {
-    width: 150px;
-    height: 240px;
-    position: absolute;
-    left: 50%;
-    top: auto;
-    bottom: 20px;
-    transform: translateX(-50%);
-  }
-}
+@media (max-width: 768px) {}
 
 .alieno {
   width: 300px;
@@ -84,13 +55,6 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-@media (max-width: 768px) {
-  .commencer {
-    font-size: 1rem;
-    padding: 10px 20px;
-  }
-}
-
 .commencer:hover {
   background-color: #ff8c00;
   box-shadow: 0 0 10px #ff8c00, 0 0 20px #ff8c00, 0 0 40px #ff8c00,
@@ -103,13 +67,86 @@ body {
   font-weight: bold;
 }
 
-/* Background color under videos */
-.video-background {
-  background-color: #ff8c00;
-}
+@media (max-width: 768px) {
+  .divtext {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
 
-/* Page background */
-.page-wrapper {
-  background-color: #ff8c00;
-  min-height: 100vh;
+  .alieno {
+    display: none;
+  }
+
+  .text-home {
+    font-size: 0.875rem;
+  }
+
+  .titolo {
+    font-size: 2rem;
+  }
+
+  .commencer {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .mobilepseudo {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 25%;
+  }
+
+  .mobilesectionmode {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .dt {
+    width: 80%;
+  }
+
+  .mobiledivquadri {
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    width: 95%;
+    margin-left: 10px;
+    margin-top: -250px;
+    opacity: 90%;
+  }
+
+  .mobilebuttonmode {
+    padding: 15px;
+    width: 110%;
+    display: flex;
+    gap: 10px;
+    opacity: 0.8;
+  }
+
+  .mobileorologio {
+    margin-left: 30px;
+    margin-bottom: 10px;
+    width: 50px;
+  }
+
+  .wm {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .mobiletimer {
+    top: 0px;
+
+  }
+
+  .dataorafooter {
+    display: none;
+  }
+
+  .footernome {
+    margin-left: 80px;
+  }
+
 }

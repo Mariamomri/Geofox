@@ -139,12 +139,23 @@ function Quiz() {
           </p>
         )}
 
+<<<<<<< HEAD
         {/* Timer */}
         {mode === "Contre la montre" && selected === null && (
           <div
             className={`text-3xl md:text-5xl absolute md:float-right md:mr-240 md:mb-100 z-10 flex flex-col items-center justify-center font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400 p-0 m-0"}`}
           >
             <img src={clesidra} alt="Clesidra" className="w-16 md:w-30" />{" "}
+=======
+        {/* timer */}
+        {mode === "Contre la montre" && selected === null && (
+          <div
+            className={`text-3xl md:text-5xl absolute md:float-right md:mr-240 md:mb-100 z-10 flex flex-col items-center justify-center font-black mb-4 mobiletimer ${
+              timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400"
+            }`}
+          >
+            <img src={clesidra} alt="Clesidra" className="w-16 md:w-30" />
+>>>>>>> responsive
             {timeLeft}s
           </div>
         )}
