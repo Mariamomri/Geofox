@@ -26,8 +26,6 @@
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 768px) {}
-
 .alieno {
   width: 300px;
   height: 485px;
@@ -147,32 +145,4 @@
     margin-left: 80px;
   }
 
-  /* Quiz page mobile fixes */
-  .quiz-container {
-    position: relative;
-    min-height: 100vh;
-    width: 100%;
-  }
-
-  .quiz-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -10;
-  }
-
-  .quiz-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 1rem;
-    gap: 1rem;
-  }
 }

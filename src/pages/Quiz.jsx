@@ -71,11 +71,9 @@ function Quiz() {
       return;
 
     if (timeLeft <= 0) {
-      setTimeout(() => {
-        setSelected("__TIMEOUT__");
-        setFeedback("bad");
-        goNext();
-      }, 0);
+      setSelected("__TIMEOUT__");
+      setFeedback("bad");
+      setTimeout(goNext, 1000);
       return;
     }
 
@@ -95,26 +93,21 @@ function Quiz() {
 
   return (
     <>
-      <video
-        autoPlay
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover -z-2"
-        onLoadedMetadata={(e) => (e.target.playbackRate = 3)}
-      >
-        <source
-          src={videoLune}
-          type="video/mp4"
-          className="hidden hover:hidden-none"
-        />
-        Ton navigateur ne supporte pas la vidéo HTML5.
-      </video>
+      <div className="flex flex-col items-center justify-center text-white px-2 max-w-2xl mx-auto w-full bg-black rounded-lg  mt-0 ml-100 lapagina">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover -z-10"
+        >
+          <source src={videoLune} type="video/mp4" />
+        </video>
 
-      <div className="flex flex-col items-center justify-center text-white px-2 max-w-2xl mx-auto w-full rounded-lg mt-0 ml-0 md:ml-100">
         <img
           src={img}
           alt="Volpe"
-          className="hidden md:block w-80 float-left absolute md:ml-205 md:mt-50 z-10"
+          className=" w-80 float-left absolute ml-205 mt-50 z-10"
         />
 
         {/* Progression */}
@@ -144,15 +137,12 @@ function Quiz() {
           </p>
         )}
 
-        {/* timer */}
+        {/* Timer */}
         {mode === "Contre la montre" && selected === null && (
           <div
-            className={`text-3xl md:text-5xl absolute md:float-right md:mr-240 md:mb-100 z-10 flex flex-col items-center justify-center font-black mb-4 mobiletimer ${
-              timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400"
-            }`}
+            className={`text-5xl float-right mr-240 mb-100 absolute z-10 flex flex-col items-center justify-center font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400 p-0 m-0"}`}
           >
-            <img src={clesidra} alt="Clesidra" className="w-16 md:w-30" />
-            {timeLeft}s
+            <img src={clesidra} alt="Clesidra" className="w-30" /> {timeLeft}s
           </div>
         )}
 
@@ -191,11 +181,11 @@ function Quiz() {
           ))}
         </div>
 
-        <div className="flex flex-col md:absolute md:z-20 md:mr-230 md:mb-80 items-center justify-center text-white px-3 max-w-2xl mx-auto">
+        <div className="flex flex-col absolute z-20  mr-230 mb-80 items-center justify-center text-white px-3 max-w-2xl mx-auto">
           {/* Feedback — automatique après 1.2s */}
           {feedback && (
             <p
-              className={`mt-6 text-lg md:text-xl font-bold ${feedback === "good" ? "text-green-400" : "text-red-400"}`}
+              className={`mt-6 text-xl font-bold ${feedback === "good" ? "text-green-400" : "text-red-400"}`}
             >
               {feedback === "good"
                 ? " Bonne réponse !"
