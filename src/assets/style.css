@@ -133,10 +133,6 @@
     padding: 5px;
   }
 
-  .mobiletimer {
-    top: 0px;
-  }
-
   .dataorafooter {
     display: none;
   }
@@ -145,4 +141,24 @@
     margin-left: 80px;
   }
 
+  /*quiz*/
+
+  .mobiletimer {
+    top: 0px;
+    position: absolute;
+  }
+
+  .lapagina {
+    margin-left: 0px;
+    margin-top: 0px;
+    width: 100%;
+  }
+
+  .volpe {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    bottom: 5px;
+    right: 0px;
+  }
 }
