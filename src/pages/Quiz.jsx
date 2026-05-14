@@ -93,7 +93,7 @@ function Quiz() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center text-white px-2 max-w-2xl mx-auto w-full bg-black rounded-lg  mt-0 ml-100 lapagina">
+      <div className="flex flex-col items-center justify-center text-white px-2 max-w-2xl mx-auto w-full bg-black rounded-lg bg-black/70 mt-0 ml-100 lapagina">
         <video
           autoPlay
           muted
@@ -138,15 +138,13 @@ function Quiz() {
         )}
 
         {/* Timer */}
-        <div className="mobiletimer">
-          {mode === "Contre la montre" && selected === null && (
-            <div
-              className={`text-5xl  float-right mr-240 mb-100 absolute z-10 flex flex-col items-center justify-center font-black mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400 p-0 m-0"}`}
-            >
-              <img src={clesidra} alt="Clesidra" className="w-30" /> {timeLeft}s
-            </div>
-          )}
-        </div>
+        {mode === "Contre la montre" && selected === null && (
+          <div
+            className={`text-5xl  float-right mr-240 mb-100  absolute z-10 flex flex-col items-center justify-center font-black mobiletimer mb-4 ${timeLeft <= 3 ? "text-red-400 animate-pulse" : "text-orange-400 p-0 m-0"}`}
+          >
+            <img src={clesidra} alt="Clesidra" className="w-30" /> {timeLeft}s
+          </div>
+        )}
 
         {current.flag && (
           <img
