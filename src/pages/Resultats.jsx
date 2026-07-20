@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useQuiz } from "../context/QuizContext.jsx";
+import { API_BASE } from "../services/api.js";
 
 function Resultats() {
   const { score, mode, setScore, pseudo } = useQuiz(); // On lit le score depuis le Context
@@ -23,7 +24,7 @@ function Resultats() {
     if (giaeSalvato.current) return; // blocca se già salvato
     giaeSalvato.current = true; // segna come salvato
 
-    fetch("http://localhost/Geofox/back_end/api/scores.php", {
+    fetch(`${API_BASE}/api/scores.php`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -40,7 +41,7 @@ function Resultats() {
 
   //top 3
   useEffect(() => {
-    fetch("http://localhost/Geofox/back_end/api/scores.php")
+    fetch(`${API_BASE}/api/scores.php`)
       .then((res) => res.json())
       .then((data) => setTopScores(data))
       .catch((err) => console.log("Erreur classement:", err));

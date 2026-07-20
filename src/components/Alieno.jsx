@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 function Alien() {
   const { scene } = useGLTF(
-    "./public/models/tiny_planet_friends_3d-cute-2762.glb",
+    `${import.meta.env.BASE_URL}models/tiny_planet_friends_3d-cute-2762.glb`,
   );
   return <primitive object={scene} scale={1} />;
 }

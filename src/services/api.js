@@ -1,5 +1,6 @@
 // Centralise tous les appels vers le back-end PHP
-const API_BASE = "http://localhost/Geofox/back_end";
+export const API_BASE =
+  import.meta.env.VITE_API_URL || "http://localhost/Geofox/back_end";
 
 // Récupère N questions depuis l'API PHP
 export async function fetchQuiz(nbQuestions = 10) {
