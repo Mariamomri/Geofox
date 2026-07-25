@@ -1,5 +1,5 @@
 Visit website link (^_^)
-https://mariam.alwaysdata.net/Geofox
+https://geofox-tau.vercel.app
 
 A full-stack geography quiz application built with:
 - React + Vite 
